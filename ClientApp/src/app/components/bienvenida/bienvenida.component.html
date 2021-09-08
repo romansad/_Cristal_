@@ -1,0 +1,184 @@
+<div class="card-deck">
+  <div class="row p-2 col-12">
+    <!--JUGAR ACA CON COL 12 y dividir cada card en 4 col-->
+
+    <div class="card text-center card-info sin-borde">
+      <div class="card-block">
+        <h4 class="card-title cssDescripcion">Denuncias.</h4>
+        <img src="../../../assets/IconsGoogle/Oficial_Policia.png" alt="" width="88" height="88" [routerLink]="['/tabla-denuncia']" title="Click aquí para gestionar las denuncias.">
+      </div>
+      <div class="row p-2 no-gutters">
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0 bg-dark">
+            <h3>{{totalDenuncias}}</h3>
+            <span class="small text-uppercase">Total Activas</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0 bg-dark ">
+            <h3>{{totalDenunAsignaEmpleado}}</h3>
+            <span class="small text-uppercase">Asignadas a Mi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card text-center card-info sin-borde">
+      <div class="card-block">
+        <h4 class="card-title cssDescripcion">Reclamos.</h4>
+        <img src="../../../assets/IconsGoogle/Reclamo.png" alt="" width="88" height="88" [routerLink]="['/reclamo-tabla']" title="Click aquí para gestionar los Reclamos.">
+      </div>
+      <div class="row p-2 no-gutters">
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0 bg-dark">
+            <h3>{{totalDenuncias}}</h3>
+            <span class="small text-uppercase">Total Activos</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0 bg-dark ">
+            <h3>{{totalDenunAsignaEmpleado}}</h3>
+            <span class="small text-uppercase">Asignados a Mi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card text-center card-info sin-borde">
+      <div class="card-block">
+        <h4 class="card-title cssDescripcion">Solicitudes.</h4>
+        <img src="../../../assets/IconsGoogle/Solicitud.png" alt="" width="88" height="88" [routerLink]="['/tabla-denuncia']" title="Click aquí para gestionar las denuncias.">
+      </div>
+      <div class="row p-2 no-gutters">
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0 bg-dark">
+            <h3>{{totalDenuncias}}</h3>
+            <span class="small text-uppercase">Total Activas</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0 bg-dark ">
+            <h3>{{totalDenunAsignaEmpleado}}</h3>
+            <span class="small text-uppercase">Asignados a Mi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card text-center card-info sin-borde">
+      <div class="card-block">
+        <h4 class="card-title cssDescripcion">Sugerencias.</h4>
+        <img src="../../../assets/IconsGoogle/Sugerencias.png" alt="" width="88" height="88" [routerLink]="['/tabla-denuncia']" title="Click aquí para gestionar las denuncias.">
+      </div>
+      <div class="row p-2 no-gutters">
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0 bg-dark">
+            <h3>{{totalDenuncias}}</h3>
+            <span class="small text-uppercase">Total Activas</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0 bg-dark ">
+            <h3>{{totalDenunAsignaEmpleado}}</h3>
+            <span class="small text-uppercase">Asignados a Mi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="row p-2 col-12">
+      <div class="card text-center card-info bg-info">
+        <div class="card-block">
+          <h4 class="card-title">Denuncias.</h4>
+          <img src="../../../assets/IconsGoogle/Oficial_Policia.png" alt="" width="88" height="88">
+        </div>
+        <div class="row p-2 no-gutters">
+          <div class="col-6">
+            <div class="card card-block text-info rounded-0 border-left-0 border-top-o border-bottom-0 bg-dark">
+              <h3>75</h3>
+              <span class="small text-uppercase">Total Activas</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card card-block text-info rounded-0 border-right-0 border-top-o border-bottom-0 bg-dark ">
+              <h3>30%</h3>
+              <span class="small text-uppercase">Asignadas a Mi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>-->
+
+    <!--<div class="card" style="width:250px">
+      <img class="card-img-top" src="../../../assets/Imagenes/Esposas.png" alt="Card image">
+      <div class="card-body">
+        <h4 class="card-title btn-link" href="#">Tablero de Denuncias</h4>
+        <p class="card-text">De las 7 denuncias activas , usted posee 4 asignadas para su gestión.</p>
+      </div>
+    </div>
+    <div class="card" style="width:250px">
+      <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+      <div class="card-body">
+        <h4 class="card-title">John Doe</h4>
+        <p class="card-text">Some example text.</p>
+        <a href="#" class="btn btn-primary">See Profile</a>
+      </div>
+    </div>
+    <div class="card" style="width:250px">
+      <img class="card-img-top" src="img_avatar1.png" alt="Card image">
+      <div class="card-body">
+        <h4 class="card-title">John Doe</h4>
+        <p class="card-text">Some example text.</p>
+        <a href="#" class="btn btn-primary">See Profile</a>
+      </div>
+    </div>
+    <div class="card" style="width:250px">
+      <img class="card-img-top" src="../../../assets/Imagenes/Historicos.jpg" alt="Card image">
+      <div class="card-body">
+        <h4 class="card-title btn-link">Registros Históricos</h4>
+        <p class="card-text ">Visualizar registros historicos de gestión.</p>
+      </div>
+    </div>
+
+  </div>
+
+
+    <div class="row">
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="../../../assets/Imagenes/Esposas.png" alt="" height="150" width="180">
+          <div class="card-body">
+            <h4 class="card-title">Denuncias</h4>
+            <p class="card-text">Teblero deGestion de Denuncias, Usted posee 5 denuncias asignadas</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Denuncias!</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="../../assets/Imagenes/Datos-abiertos.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Denuncias</h4>
+            <p class="card-text">Nuestro objetivo es la transparencia y uso responsable de los recursos, le invitamos a conocerrlos.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Denuncias</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-5">
+        <div class="card h-100">
+          <img class="card-img-top" src="../../assets/Imagenes/reclamos.jpg" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Reclamos</h4>
+            <p class="card-text">Portal exlusivo para nuestros que nuestros vecinos puedan realizar los reclamos de servicio, y el seguimiento de los mismos hasta su resolucion.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Reclamos!</a>
+          </div>
+        </div>
+      </div>-->
+  </div>

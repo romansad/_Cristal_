@@ -1,0 +1,8 @@
+.sin-borde {
+  border: 0;
+  box-shadow: none; /* You may want to include this as bootstrap applies these styles too */
+}
+.cssDescripcion {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.9em;
+}

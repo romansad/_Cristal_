@@ -1,0 +1,24 @@
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th *ngFor="let cabecera of cabeceras">{{cabecera}} </th>
+      <th class="text-center" *ngIf="isMantenimiento==true">Operaciones con usuario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{usuario.idUsuario}}</td>
+      <td>{{usuario.nombreUser}}</td>
+      <td>{{usuario.fechaAlta| date: 'dd/MM/yyyy'}}</td>     
+      <td>{{usuario.nombreTipoUsuario}}</td>
+      <td class="text-center" *ngIf="isMantenimiento==true">
+        <button type="button" class="btn btn-outline-success" [routerLink]="['/form-usuario-generar',usuario.idUsuario]"><img src="../../../assets/IconsGoogle/pencil-square.svg" alt="" width="24" height="24" title="Editar Usuario"></button>
+        <button type="button" class="btn btn-outline-secondary" [routerLink]="['/trabajo-form-generar']">
+          <img src="../../../assets/IconsGoogle/trash.svg" alt="" width="24" height="24" title="Eliminar Usuario">
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

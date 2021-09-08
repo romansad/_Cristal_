@@ -1,0 +1,47 @@
+.texto-blanco {
+  color: white;
+  font-size: 1.12em;
+}
+.tituloFormulario {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3.5em;
+  color: #240f7d;
+}
+
+.subtitulo {
+  color: #240f7d;
+  background-color: skyblue;
+  /*align-content: center;*/
+}
+
+.fondoTextTitulo {
+  background-color: skyblue;
+}
+.subtitulo {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 2.5em;
+}
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+  .tooltiper .tooltiptext {
+    /*visibility: hidden;*/
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
