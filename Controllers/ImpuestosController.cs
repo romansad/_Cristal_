@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MUNICIPALIDAD_V4.clases;
+using MUNICIPALIDAD_V4.Data;
 using MUNICIPALIDAD_V4.models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -62,7 +64,42 @@ namespace MUNICIPALIDAD_V4.Controllers
         }
         //where trabajo.Bhabilitado ==1
 
+        private readonly ValuesRepository _repository;
 
+        public ValuesController(ValuesRepository repository)
+        {
+            this._repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        }
+
+        // GET api/values
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable>> Get()
+        {
+            return await _repository.GetAll();
+        }
+
+        // GET api/values/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult> Get(int id)
+        {
+            var response = await _repository.GetById(id);
+            if (response == null) { return NotFound(); }
+            return response;
+        }
+
+        // POST api/values
+        [HttpPost]
+        public async Task Post([FromBody] Value value)
+        {
+            await _repository.Insert(value);
+        }
+
+        // DELETE api/values/5
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await _repository.DeleteById(id);
+        }
 
     }
 }
