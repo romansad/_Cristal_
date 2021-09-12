@@ -15,10 +15,28 @@ export class ImpuestoService {
     return this.http.get(this.urlBase + 'api/Impuestos/getUltimaFechaInteres').map(res => res.json());
   }
 
+  getUltimaFechaBoleta(){
+    return this.http.get(this.urlBase + 'api/Impuestos/getUltimaFechaBoleta').map(res => res.json());
+  }
+
   public ListarImpuestosAdeudados(idLote) {
     return this.http.get(this.urlBase + 'api/Impuesto/ListarImpuestosAdeudados/' + idLote)
       .map(res => res.json());
   }
 
+  public SP_GeneracionImpuestos() {
+    return this.http.get(this.urlBase + 'api/Impuestos/SP_GeneracionImpuestos')
+  }
 
+  public SP_GeneracionInteresesMensuales() {
+    return this.http.get(this.urlBase + 'api/Impuestos/SP_GeneracionInteresesMensuales')
+
+  }
+  public SP_LimpiezaBoletas() {
+    return this.http.get(this.urlBase + 'api/Impuestos/SP_LimpiezaBoletas')
+
+  }
 }
+
+
+
