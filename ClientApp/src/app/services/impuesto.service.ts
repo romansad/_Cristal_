@@ -36,6 +36,11 @@ export class ImpuestoService {
     return this.http.get(this.urlBase + 'api/Impuestos/SP_LimpiezaBoletas')
 
   }
+  public guardarBoleta(FGimpuestos) {
+    var url = this.urlBase + 'api/Impuestos/guardarBoleta/';
+    return this.http.post(url, FGimpuestos).map(res => res.json());
+
+  }
 }
 
 

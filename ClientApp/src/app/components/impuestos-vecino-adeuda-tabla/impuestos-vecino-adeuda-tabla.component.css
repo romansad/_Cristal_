@@ -9,3 +9,17 @@
   font-size: 1.3em;
   color: #ffffff;
 }
+
+.textopagar {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.6em;
+  color: #ffffff;
+}
+
+body {
+  background-color: #240f7d;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+}

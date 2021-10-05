@@ -1,0 +1,13 @@
+
+iframe {
+  height: 80em;
+  width: 100%;
+  margin-right: 2em;
+  margin-left: 2em;
+}
+
+.tituloFormulario {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 3.5em;
+  color:#0e0653;
+}

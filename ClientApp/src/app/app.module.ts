@@ -56,6 +56,7 @@ import { FiltroDenunciaComponent } from './components/filtro-denuncia/filtro-den
 import { EjecucionProcesosComponent } from './components/ejecucion-procesos/ejecucion-procesos.component';
 import { ImpuestosVecinoIdentificadorComponent } from './components/impuestos-vecino-identificador/impuestos-vecino-identificador.component';
 import { ImpuestosVecinoAdeudaTablaComponent } from './components/impuestos-vecino-adeuda-tabla/impuestos-vecino-adeuda-tabla.component';
+import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { ImpuestosVecinoAdeudaTablaComponent } from './components/impuestos-veci
     EjecucionProcesosComponent,
     ImpuestosVecinoIdentificadorComponent,
     ImpuestosVecinoAdeudaTablaComponent,
+    MapasCordobaComponent,
 
      ],
   imports: [
@@ -147,7 +149,10 @@ import { ImpuestosVecinoAdeudaTablaComponent } from './components/impuestos-veci
         { path: 'impuestos-vecino-identificador/:id', component: ImpuestosVecinoIdentificadorComponent },
         { path: 'impuestos-vecino-adeuda-tabla', component: ImpuestosVecinoAdeudaTablaComponent },
         { path: 'impuestos-vecino-adeuda-tabla/:id', component: ImpuestosVecinoAdeudaTablaComponent },
+        { path: 'mapas-cordoba', component: MapasCordobaComponent },
 
+
+    
         { path: '**', redirectTo: '' } //regña de derivacion a ruteo especifico
 
 
