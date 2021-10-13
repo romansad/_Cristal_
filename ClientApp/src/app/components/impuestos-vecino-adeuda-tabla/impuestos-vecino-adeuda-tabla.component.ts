@@ -79,7 +79,7 @@ export class ImpuestosVecinoAdeudaTablaComponent implements OnInit {
     if (this.FGimpuestos.valid == true) {
       //  this.respuesta =
       this.impuestoService.guardarBoleta(this.FGimpuestos.value).subscribe(data => {
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/impuesto-pago-send"]);
       })
       //  if (this.respuesta == 0) {
       //    console.log("No se guardo correcto hubo error");

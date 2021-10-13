@@ -41,24 +41,7 @@ namespace MUNICIPALIDAD_V4
             });
 
 
-            //Add MailKit
-            //services.AddMailKit(optionBuilder =>
-            //{
-            //    optionBuilder.UseMailKit(new MailKitOptions()
-            //    {
-            //        //get options from sercets.json
-            //        Server = Configuration["smtp.gmail.com"],
-            //        Port = Convert.ToInt32(Configuration["587"]),
-            //        SenderName = Configuration["Municipio"],
-            //        SenderEmail = Configuration["municipiovillaparquesantaana@gmail.com"],
-
-            //        // can be optional with no authentication 
-            //        Account = Configuration["municipiovillaparquesantaana@gmail.com"],
-            //        Password = Configuration["0#E3ggyf&:?%WCJCLs|V"],
-            //        // enable ssl or tls
-            //        Security = true
-            //    });
-            //});
+           
 
         }
 

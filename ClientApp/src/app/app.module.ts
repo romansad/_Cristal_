@@ -57,6 +57,8 @@ import { EjecucionProcesosComponent } from './components/ejecucion-procesos/ejec
 import { ImpuestosVecinoIdentificadorComponent } from './components/impuestos-vecino-identificador/impuestos-vecino-identificador.component';
 import { ImpuestosVecinoAdeudaTablaComponent } from './components/impuestos-vecino-adeuda-tabla/impuestos-vecino-adeuda-tabla.component';
 import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.component';
+import { TaskService } from './services/task.service';
+import { ImpuestoPagoSendComponent } from './components/impuesto-pago-send/impuesto-pago-send.component';
 
 
 @NgModule({
@@ -97,6 +99,7 @@ import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.
     ImpuestosVecinoIdentificadorComponent,
     ImpuestosVecinoAdeudaTablaComponent,
     MapasCordobaComponent,
+    ImpuestoPagoSendComponent,
 
      ],
   imports: [
@@ -150,7 +153,9 @@ import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.
         { path: 'impuestos-vecino-adeuda-tabla', component: ImpuestosVecinoAdeudaTablaComponent },
         { path: 'impuestos-vecino-adeuda-tabla/:id', component: ImpuestosVecinoAdeudaTablaComponent },
         { path: 'mapas-cordoba', component: MapasCordobaComponent },
+        { path: 'impuesto-pago-send', component: ImpuestoPagoSendComponent },
 
+        
 
     
         { path: '**', redirectTo: '' } //regña de derivacion a ruteo especifico
@@ -158,7 +163,7 @@ import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.
 
       ])
   ],
-  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService],
+  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

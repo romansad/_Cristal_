@@ -1,13 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MUNICIPALIDAD_V4.clases;
 using MUNICIPALIDAD_V4.models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
@@ -129,9 +133,13 @@ namespace MUNICIPALIDAD_V4.Controllers
 
         [HttpPost]
         [Route("api/Impuestos/guardarBoleta")]
-        public int guardarBoleta([FromBody] DetalleBoletaCLS oDetalleBoletaCLS)
+        public async Task<IActionResult> guardarBoleta([FromBody] DetalleBoletaCLS oDetalleBoletaCLS)
+        //public int guardarBoleta([FromBody] DetalleBoletaCLS oDetalleBoletaCLS)
         {
-            int rpta = 0;
+            //objeto global boleta para enviar a mobbex
+            BoletaCLS oBoletaCLS = new BoletaCLS();
+
+           // int rpta = 0;
             try
             {
                 using (M_VPSA_V3Context bd = new M_VPSA_V3Context())
@@ -159,71 +167,89 @@ namespace MUNICIPALIDAD_V4.Controllers
                             oDetalleboleta.Estado = 0;
                             bd.Detalleboleta.Add(oDetalleboleta);
                         }
+ 
                         bd.SaveChanges();
 
-                        try
-                        {
-                            bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA");
-                            //SqlParameter boletaid = new SqlParameter("@IdBoleta_par", idBoleta);
-                            //bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA @IdBoleta_par", boletaid);
-                            //bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA @IdBoleta_par", idBoleta);
-                            //bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA", new SqlParameter("@IdBoleta_par", idBoleta));
-                            bd.SaveChanges();
+                           Boleta oBoleta2 = bd.Boleta.Last();
+                            //Llenaremos los campos del objeto boleta para enviarlo a mobbex
+                            oBoletaCLS.idBoleta = oBoleta2.IdBoleta;
+                            oBoletaCLS.currency = "ARS";
+                            //idBoleta = oBoleta2.IdBoleta;
+                            //bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA");
+                            SqlParameter boletaid = new SqlParameter("@IdBoleta_par", oBoletaCLS.idBoleta);
+                            bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA @IdBoleta_par", boletaid);
+                            
+                            HttpContext.Session.SetString("idBoleta", oBoleta2.IdBoleta.ToString());
+                             // VER LA POSIBILIDAD DE INSERTAR TODOS LOS PARAMETROS EN LA SESION Y LUEGO BORRARLOS 
+                            // CUANDO FINALICE LA MISMA O POR LO MENOS EL ID DE BOLEta PARA LUEGO RECUPERARLO 
+                              bd.SaveChanges();
 
-                        }
-                        catch (Exception ex) {
-                            Console.WriteLine(ex); }
                         transaccion.Complete();
+                        try { 
+                        Boleta oboleta = bd.Boleta.Where(b => b.IdBoleta == oBoletaCLS.idBoleta).First();
+                        oBoletaCLS.importe = oboleta.Importe;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine(ex);
+                            //rpta = 0;
+                        }
+                        //Crear BOLETACLS porque no puedo tomar un model
+                        List <BoletaCLS> ListaBoleta= new List<BoletaCLS>();
+                       
+                        using (var httpClient = new HttpClient())
+                        {
+                            StringContent content = new StringContent(JsonConvert.SerializeObject(oBoletaCLS), Encoding.UTF8, "application/json");
+                            content.Headers.Add("x-api-key", "BQ32LI_kA4b3DgIfCuYYaRZJcxPRQqt52LXarr_Q");
+                            content.Headers.Add("x-access-token", "0aac0a06-799e-4251-aff1-11d079ee79f7");
+                            content.Headers.Add("Content-Type", "application/json");
+                            using (var response = await httpClient.PostAsync("https://api.mobbex.com/p/checkout", content))
+                            {
+                                string apiResponse = await response.Content.ReadAsStringAsync();
+                                oBoletaCLS = JsonConvert.DeserializeObject<BoletaCLS>(apiResponse);
+                            }
+                        }
+                        return View(oBoletaCLS);
+
+//                        var request = new RestRequest(Method.POST);
+//                        request.AddHeader("x-api-key", "zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj");
+//                        request.AddHeader("x-access-token", "d31f0721-2f85-44e7-bcc6-15e19d1a53cc");
+//                        request.AddHeader("Content-Type", "application/json");
+//                        var body = @"{
+//" + "\n" +
+//                        @"    ""total"": ""100.53"",
+//" + "\n" +
+//                        @"    ""description"": ""Checkout de Prueba"",
+//" + "\n" +
+//                        @"    ""reference"": ""260520210954"",
+//" + "\n" +
+//                        @"    ""currency"": ""ARS"",
+//" + "\n" +
+//                        @"    ""test"": true,
+//" + "\n" +
+//                        @"    ""return_url"": ""https://mobbex.com/return_url"",
+//" + "\n" +
+//                        @"    ""webhook"": ""https://mobbex.com/webhook"",
+//" + "\n" +
+//                        @"    ""customer"": {
+//" + "\n" +
+//                        @"        ""email"": ""demo@mobbex.com"",
+//" + "\n" +
+//                        @"        ""name"": ""Cliente Demo"",
+//" + "\n" +
+//                        @"        ""identification"": ""12123123""
+//" + "\n" +
+//                        @"    }
+//" + "\n" +
+//                        @"}";
+//                        request.AddParameter("application/json", body, ParameterType.RequestBody);
+//                        IRestResponse response = client.Execute(request);
+//                        Console.WriteLine(response.Content);
+
+
+
+                        //rpta = 1;
                         
-                        //var command = connection.CreateCommand();10
-                        //bd.CommandType = CommandType.StoredProcedure;
-                        //bd.CommandText = "ACTUALIZACION_DETALLESBOLETA";
-                        //bd.Parameters.AddWithValue("@IdBoleta_par", idBoleta);
-
-                        //command.ExecuteNonQuery();
-                        //bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLESBOLETA", new SqlParameter("@IdBoleta_par", idBoleta));
-                        //bd.SaveChanges();
-                        rpta = 1;
-                        //  }
-                        //else
-                        //{
-                        //    //REcuperamos la info.
-                        //    Rol oRol = bd.Rol.Where(p => p.IdRol == oRolCLS.IidRol).First();
-                        //    oRol.NombreRol = oRolCLS.NombreRol;
-                        //    oRol.Bhabilitado = 1;
-                        //    bd.SaveChanges();
-                        //    String[] idsPaginas = oRolCLS.Valores.Split("-");
-                        //    //ahora vamos a deshabilitar todas las paginas asociadas con este rol actualmente. 
-                        //    List<Paginaxrol> lista = bd.Paginaxrol.Where(p => p.IdRol == oRolCLS.IidRol).ToList();
-                        //    foreach (Paginaxrol pag in lista)
-                        //    {
-                        //        pag.Bhabilitado = 0;
-                        //    }
-                        //    //
-                        //    int cantidad;
-                        //    for (int i = 0; i < idsPaginas.Length; i++)
-                        //    {
-                        //        cantidad = lista.Where(p => p.IdPagina == int.Parse(idsPaginas[i])).Count();
-                        //        //si es = a 0 es porque no existe y debemos registrarlo
-                        //        if (cantidad == 0)
-                        //        {
-                        //            Paginaxrol oPaginaxrol = new Paginaxrol();
-                        //            oPaginaxrol.IdPagina = int.Parse(idsPaginas[i]);
-                        //            oPaginaxrol.IdRol = oRolCLS.IidRol;
-                        //            oPaginaxrol.Bhabilitado = 1;
-                        //            bd.Paginaxrol.Add(oPaginaxrol);
-                        //        }
-                        //        else
-                        //        {
-                        //            Paginaxrol PxR = lista.Where(p => p.IdPagina == int.Parse(idsPaginas[i])).First();
-                        //            PxR.Bhabilitado = 1;
-                        //        }
-                        //    }
-                        //    bd.SaveChanges();
-                        //    transaccion.Complete();
-                        //    rpta = 1;
-
-                        //}
                     }
 
                 }
@@ -231,10 +257,11 @@ namespace MUNICIPALIDAD_V4.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                rpta = 0;
+                //rpta = 0;
             }
-            return rpta;
-        }
+            //  return rpta;
+            return Ok(oBoletaCLS);
+        }   //FIN GUARdar Boleta y enviar a mobex
 
 
         //A partir de aqui termina todo
