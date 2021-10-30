@@ -25,7 +25,7 @@
           <td class="text-center">{{impuestoss.importeFinal|currency:'USD':'symbol'}}</td>
           <td class="text-center">
             <input class="check" [name]="impuestoss.idImpuesto" (change)="verCheck()" [value]="impuestoss.importeFinal" type="checkbox" />
-         
+
             <img src="../../../assets/IconsGoogle/money.svg" alt="" width="24" height="24" title="Pagar">
           </td>
         </tr>
@@ -34,18 +34,18 @@
     <pagination-controls (pageChange)="p = $event"></pagination-controls>
     <div class="row">
       <label class="textopagar Col-md-12 offset-3 d-flex align-items-center text-center ">El importe total a abonar es: {{suma_actual|currency:'USD':'symbol'}}</label>
+    </div>
+
+    <div class="row p-3 my-2">
+      <hr class="mb-4">
+      <div class="form-group col-md-12 mb-3 pt-3">
+        <!--[disabled]="!FGimpuestos.valid"       (click)="clickMethod()"-->
+        <input type="submit" value="Pagar" class="btn btn-success col-md-4 offset-md-1 " />
+        <button type="button" class="btn btn-secondary col-md-4 offset-md-1" (click)="volver()">Volver</button>
       </div>
 
-      <div class="row p-3 my-2">
-        <hr class="mb-4">
-        <div class="form-group col-md-12 mb-3 pt-3">
-          <!--[disabled]="!FGimpuestos.valid"       (click)="clickMethod()"-->
-          <input type="submit" value="Confirmar Seleccion" class="btn btn-success col-md-4 offset-md-1 " />
-          <button type="button" class="btn btn-secondary col-md-4 offset-md-1" (click)="volver()">Volver</button>
-        </div>
+    </div>
 
-      </div>
-
-      <!--<button type="button" class="btn btn-light" [routerLink]="['/trabajo-detalle-denuncia',Denuncia.nro_Denuncia]"><img src="../../../assets/icons/eye.svg" alt="" width="24" height="24" title="Ver Detalles"></button>-->
+    <!--<button type="button" class="btn btn-light" [routerLink]="['/trabajo-detalle-denuncia',Denuncia.nro_Denuncia]"><img src="../../../assets/icons/eye.svg" alt="" width="24" height="24" title="Ver Detalles"></button>-->
   </form>
 </body>

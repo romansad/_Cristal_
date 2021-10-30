@@ -10,9 +10,12 @@ namespace MUNICIPALIDAD_V4.clases
         public string email { get; set; }
         public string name { get; set; }
         public string identification { get; set; }
-        public string phone { get; set; }
-        
-        
 
     }
 }
+
+//                        @"        ""email"": ""demo@mobbex.com"",
+//" + "\n" +
+//                        @"        ""name"": ""Cliente Demo"",
+//" + "\n" +
+//                        @"        ""identification"": ""12123123""

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -23,7 +24,7 @@ namespace MUNICIPALIDAD_V4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
+            services.AddCors();
 
             services.AddSession(options =>
             {
@@ -41,13 +42,15 @@ namespace MUNICIPALIDAD_V4
             });
 
 
-           
+
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -68,6 +71,9 @@ namespace MUNICIPALIDAD_V4
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            app.UseCors(x => x.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader());
 
             app.UseSpa(spa =>
             {
@@ -81,6 +87,9 @@ namespace MUNICIPALIDAD_V4
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+
+
         }
     }
 }

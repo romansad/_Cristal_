@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service';
+import { ImpuestoService } from '../../services/impuesto.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'impuesto-pago-send',
@@ -7,54 +9,49 @@ import { TaskService } from '../../services/task.service';
   styleUrls: ['./impuesto-pago-send.component.css']
 })
 export class ImpuestoPagoSendComponent implements OnInit {
+  mobexx: any;
+  mobexx2: any;
+  constructor(private impuestoService: ImpuestoService, private router: Router) { }
 
-  constructor(private taskservice: TaskService) { }
 
-  getAllTasks() {
-    this.taskservice.getAllTasks().subscribe(tasks => { console.log(tasks) });
+  sendToMbx() {
+    console.log("Lllamo a la funcion.");
+    //  this.respuesta =
+    this.impuestoService.obtenerUrlMobbexx().subscribe(data => {
+      this.mobexx = data
+      //window.location.href = this.mobexx;
+      var myJSON = decodeURIComponent(this.mobexx);
+      var myObject = JSON.parse(myJSON);
+      // console.log("Se hace +" + myObject);
+      console.log("Se hace +" + this.mobexx);
+      // this.router.navigate([this.mobexx]);
+      this.router.navigateByUrl(this.mobexx);
+    });
+    console.log(this.mobexx);
   }
-  getTask() {
-    this.taskservice.getTask('2').subscribe(task => { console.log(task) });
-  }
 
-  createTask() {
-    const task = {
-      "total": 100.53,
-      "description": "Checkout de Prueba",
-      "reference": "260520210954",
-      "currency": "ARS",
-      "test": true,
-      "return_url": "https://mobbex.com/return_url",
-      "webhook": "https://mobbex.com/webhook",
-      "customer": {
-        "email": "demo@mobbex.com",
-        "name": "Cliente Demo",
-        "identification": "12123123"
-      }
-    };
-    this.taskservice.createTask(task).subscribe((newtask) => { console.log(newtask) });
-    //Por ahora comento todo esto que sigue que es de mobex pero ya veremos que onda.
-    //var xhr = new XMLHttpRequest();
-    //xhr.withCredentials = true;
-
-    //xhr.addEventListener("readystatechange", function () {
-    //  if (this.readyState === 4) {
-    //    console.log(this.responseText);
-    //  }
+  sendToMbx2() {
+    console.log("Lllamo a la funcion.");
+    //  this.respuesta =
+    this.impuestoService.obtenerUrlMobbexx2().subscribe(data => {
+      this.mobexx2 = data;
+      //window.location.href = this.mobexx;
+      var myJSON = decodeURIComponent(this.mobexx2);
+      this.mobexx2 = JSON.parse(myJSON);
+      // console.log("Se hace +" + myObject);
+      //console.log("Se hace +" + this.my);
+      // this.router.navigate([this.mobexx]);
+      // this.router.navigateByUrl(this.mobexx);
+    });
+    console.log('La url es', this.mobexx2);
+    /*this.router.navigate(["/"]).then(result => {*/
+    //window.location.href = this.mobexx2;
     //});
+  }
 
-    //xhr.open("POST", "https://api.mobbex.com/p/checkout");
-    //xhr.setRequestHeader("x-api-key", "zJ8LFTBX6Ba8D611e9io13fDZAwj0QmKO1Hn1yIj");
-    //xhr.setRequestHeader("x-access-token", "d31f0721-2f85-44e7-bcc6-15e19d1a53cc");
-    //xhr.setRequestHeader("Content-Type", "application/json");
-
-    //xhr.send(data);
-
-
-
-  } //Fin Metodo create Task post
-
-
+  volver() {
+    this.router.navigate(["/impuestos-vecino-identificador"]);
+  }
   ngOnInit() {
   }
 

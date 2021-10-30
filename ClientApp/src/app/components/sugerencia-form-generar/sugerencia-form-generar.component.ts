@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-sugerencia-form-generar',
+  selector: 'sugerencia-form-generar',
   templateUrl: './sugerencia-form-generar.component.html',
   styleUrls: ['./sugerencia-form-generar.component.css']
 })
