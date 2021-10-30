@@ -80,7 +80,7 @@
         <div class="dropdown-menu texto-blanco" aria-labelledby="navbarDropdown">
           <a class="dropdown-item " [routerLink]="['/solicitud-form-generar']"> &nbsp;&nbsp;Solicitudes</a>
           <a class="dropdown-item " [routerLink]="['/reclamo-form-generar']"> &nbsp;&nbsp;Sugerencias</a>
-          <a class="dropdown-item " href="#"> &nbsp;&nbsp;Recoleccion de Residuos</a>
+          <a class="dropdown-item "  [routerLink]="['/mapas-cordoba']"> &nbsp;&nbsp;Inmobiliario Provincial</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item " [routerLink]="['/reclamo-form-generar']"> &nbsp;&nbsp;Generar Reclamo</a>
           <a class="dropdown-item " [routerLink]="['/denuncia-form-generar']"> &nbsp;&nbsp;Generar Denuncia</a>
@@ -164,12 +164,12 @@
         </div>
       </li>-->
 
-      <li class="nav-item"
+      <!--<li class="nav-item"
           [routerLinkActive]="['link-active']">
         <a class="nav-link" [routerLink]="['/login']" *ngIf="login==false" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="../../../assets/Imagenes/login.svg" alt="" width="36" height="36">&nbsp;&nbsp;&nbsp;Empleados
         </a>
-      </li>
+      </li>-->
 
       <li class="nav-item"
           [routerLinkActive]="['link-active']">

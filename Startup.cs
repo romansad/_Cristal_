@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -23,7 +24,7 @@ namespace MUNICIPALIDAD_V4
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
+            services.AddCors();
 
             services.AddSession(options =>
             {
@@ -41,30 +42,15 @@ namespace MUNICIPALIDAD_V4
             });
 
 
-            //Add MailKit
-            services.AddMailKit(optionBuilder =>
-            {
-                optionBuilder.UseMailKit(new MailKitOptions()
-                {
-                    //get options from sercets.json
-                    Server = Configuration["smtp.gmail.com"],
-                    Port = Convert.ToInt32(Configuration["587"]),
-                    SenderName = Configuration["Municipio"],
-                    SenderEmail = Configuration["municipiovillaparquesantaana@gmail.com"],
 
-                    // can be optional with no authentication 
-                    Account = Configuration["municipiovillaparquesantaana@gmail.com"],
-                    Password = Configuration["0#E3ggyf&:?%WCJCLs|V"],
-                    // enable ssl or tls
-                    Security = true
-                });
-            });
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -85,6 +71,9 @@ namespace MUNICIPALIDAD_V4
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            app.UseCors(x => x.AllowAnyOrigin()
+                                .AllowAnyMethod()
+                                .AllowAnyHeader());
 
             app.UseSpa(spa =>
             {
@@ -98,6 +87,9 @@ namespace MUNICIPALIDAD_V4
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+
+
         }
     }
 }
