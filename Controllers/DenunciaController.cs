@@ -210,12 +210,12 @@ namespace MUNICIPALIDAD_V4.Controllers
             try
             {
                 int idTipoRol = int.Parse(HttpContext.Session.GetString("tipoEmpleado"));
-                if (idTipoRol == 5)
+                if (idTipoRol == 2)
                 {
                     using (M_VPSA_V3Context bd = new M_VPSA_V3Context())
                     {
                         Denuncia oDenuncia = bd.Denuncia.Where(d => d.NroDenuncia == oTrabajoCLS.Nro_Denuncia).First();
-                        oDenuncia.CodEstadoDenuncia = 10;
+                        oDenuncia.CodEstadoDenuncia = 1;
                         oDenuncia.Bhabilitado = 0;
                         bd.SaveChanges();
 
@@ -227,7 +227,7 @@ namespace MUNICIPALIDAD_V4.Controllers
                     using (M_VPSA_V3Context bd = new M_VPSA_V3Context())
                     {
                         Denuncia oDenuncia = bd.Denuncia.Where(d => d.NroDenuncia == oTrabajoCLS.Nro_Denuncia).First();
-                        oDenuncia.CodEstadoDenuncia = 9;
+                        oDenuncia.CodEstadoDenuncia = 8;
                         bd.SaveChanges();
 
                     }

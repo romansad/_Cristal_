@@ -1,0 +1,43 @@
+<div class="d-flex align-items-center p-3 my-3 bg-purple bg-light shadow p-2 mb-5 rounded shadow-sm">
+  <img src="../../../assets/IconsGoogle/Justicia.svg" alt="" width="58" height="58">
+  <div class="tituloFormulario text-center form-group col-md-8 offset-md-1">
+    <p>Tablero de Sugerencias</p>
+  </div>
+</div>
+<form [formGroup]="Sugerencia">
+  <div class="input-group mb-9">
+    <input type="text" class="form-control col-md-3 mb-3" placeholder="Descripcion denuncia">
+    <div class="input-group-append">
+      <button class="btn btn-success" type="submit">Buscar</button>
+
+    </div>
+
+
+  </div>
+
+  <br /><br />
+  <table class="table table-hover" style="padding-bottom: 2.5em">
+    <thead class="thead-dark tituloTabla">
+
+
+      <tr>
+        <th class="text-center" *ngFor="let cabecera of cabeceras ">{{cabecera}} </th>
+        <th class="text-center" *ngIf="isMantenimiento==true">Operaciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let sugerencia of Sugerencias | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td class="text-center textoTabla">{{sugerencia.idSugerencia}}</td>
+        <td class="text-center textoTabla">{{sugerencia.fechaGenerada| date: 'dd/MM/yyyy HH:MM'}}</td>
+        <td class="text-center textoTabla">{{sugerencia.descripcion}}</td>
+        <td class="text-center" *ngIf="isMantenimiento==true">
+          <button type="button" class="btn btn-info" (click)="MarcarIrrelevante()">
+            <img src="../../../assets/IconsGoogle/Delete.svg" alt="" width="24" height="24" title="Marcar como Irrelevante">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</form>

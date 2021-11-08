@@ -16,5 +16,10 @@
 
 
 .tituloTabla {
-  font-size: 1.3em;
+  font-size: 1.1em;
+  background-color: #000000;
+}
+
+.table tr:hover {
+  background-color: #000000;
 }
