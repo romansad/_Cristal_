@@ -57,8 +57,9 @@ import { EjecucionProcesosComponent } from './components/ejecucion-procesos/ejec
 import { ImpuestosVecinoIdentificadorComponent } from './components/impuestos-vecino-identificador/impuestos-vecino-identificador.component';
 import { ImpuestosVecinoAdeudaTablaComponent } from './components/impuestos-vecino-adeuda-tabla/impuestos-vecino-adeuda-tabla.component';
 import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.component';
-import { TaskService } from './services/task.service';
 import { ImpuestoPagoSendComponent } from './components/impuesto-pago-send/impuesto-pago-send.component';
+import { TaskService } from './services/task.service';
+import { SugerenciaFormGenerarComponent } from './components/sugerencia-form-generar/sugerencia-form-generar.component';
 
 
 @NgModule({
@@ -100,6 +101,7 @@ import { ImpuestoPagoSendComponent } from './components/impuesto-pago-send/impue
     ImpuestosVecinoAdeudaTablaComponent,
     MapasCordobaComponent,
     ImpuestoPagoSendComponent,
+    SugerenciaFormGenerarComponent,
 
      ],
   imports: [
@@ -154,8 +156,8 @@ import { ImpuestoPagoSendComponent } from './components/impuesto-pago-send/impue
         { path: 'impuestos-vecino-adeuda-tabla/:id', component: ImpuestosVecinoAdeudaTablaComponent },
         { path: 'mapas-cordoba', component: MapasCordobaComponent },
         { path: 'impuesto-pago-send', component: ImpuestoPagoSendComponent },
+        { path: 'sugerencia-form-generar', component: SugerenciaFormGenerarComponent },
 
-        
 
     
         { path: '**', redirectTo: '' } //regña de derivacion a ruteo especifico
@@ -163,7 +165,7 @@ import { ImpuestoPagoSendComponent } from './components/impuesto-pago-send/impue
 
       ])
   ],
-  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService, TaskService],
+  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

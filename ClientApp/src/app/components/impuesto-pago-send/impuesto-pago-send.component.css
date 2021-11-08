@@ -10,7 +10,7 @@
 
 .textopago {
   font-family: "Times New Roman", Times, serif;
-  font-size: 1.3em;
+  font-size: 1.7em;
   color: #240f7d;
 }
 
@@ -28,6 +28,7 @@
 .sombras {
   box-shadow: 0 4px 8px 0 rgb(255 255 255), 0 6px 20px 0 rgb(128 128 128);
 }
+
 .cardcss {
   padding-top: 11em;
 }

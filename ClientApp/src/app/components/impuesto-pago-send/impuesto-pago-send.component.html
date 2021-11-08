@@ -2,22 +2,40 @@
 <div class="cardcss">
   <div class="card text-center sombras">
     <div class="card-header tituloTabla">
-      Dialogo de Confirmación de pago
+      Diálogo de Confirmación de Pago
     </div>
     <div class="card-body">
-      <h5 class="card-title textopago">Ticket nro: </h5>
-      <p class="card-text textopago">El importe que usted abonará es de :  </p>
-      <button class="btn btn-primary" (click)="createTask()">Pagar Impuestos</button>
+      <!-------------------------------------------------->
+      <!--Este boton encerrado utiliza la politica de derivacion especifica desde el back
+  end que me está fallando en la redireccion por cors. aun no lo resolvi-->
+      <!--<h5 class="card-title textopago">Ticket nro: </h5>
+  <p class="card-text textopago">Usted Será redireccionado al sitio de pago Externo:  </p>
+  <button class="btn btn-primary" (click)="sendToMbx()">Iniciar pago</button>
+  <p>URL: {{mobexx}}</p>-->
+      <!------------------------------------------------------->
+      <p class="card-text textopago">Para realizar el pago electrónico, haga click en <strong>
+  Iniciar Pago</strong>
+  ,
+  y luego haga click en el enlace que aparecerá debajo. 
+</p>
+      <div class="col-md-4 offset-2 mb-2">
+        <button class="btn btn-primary" (click)="sendToMbx2()">Iniciar Pago</button>
+      </div>
+        <div class="col-md-4 offset-2 mb-2">
+          <button type="button" class="btn btn-secondary col-md-4 offset-md-1" (click)="volver()">Volver</button>
+        </div>
+         <!-- <p>URL: {{mobexx2.urlMobexx}} <a href={{mobexx2.urlMobexx}} target={{mobexx2.urlMobexx}}></a></p>-->
+          <p> <a href={{mobexx2.urlMobexx}} target="_blank" rel="noopener noreferrer">Click aqui para abrir Pestaña de Pago</a>.</p>
 
-    </div>
-    <div class="card-footer text-muted">
-      Agregar una imagen de pago
-    </div>
-  </div>
+
+        </div>
+        <div class="card-footer text-muted">
+          <img src="../../../assets/Imagenes/mobbex.png" alt="" width="400" height="75">
+        </div>
+      </div>
 </div>
 
 
-  <!--<button accesskey="getAllTasks()">getAllTasks!</button>
-  <button accesskey="getTask()">getTask!</button>
-  <button accesskey="createTask()" (click)="createTask()" >CreateTask!</button>-->
-
+<!--<button accesskey="getAllTasks()">getAllTasks!</button>
+<button accesskey="getTask()">getTask!</button>
+<button accesskey="createTask()" (click)="createTask()" >CreateTask!</button>-->
