@@ -1,9 +1,6 @@
-ngb-carousel {
-  max-width: 1500px;
-  
-}
 
- .subtitulo {
+
+.subtitulo {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.3em;
   color: #240f7d;
@@ -11,15 +8,34 @@ ngb-carousel {
 
 .titulo {
   font-family: "Times New Roman", Times, serif;
-  font-size: 1.5em;
-  color: #240f7d;
+  font-size: 1.4em;
+  box-shadow: 0 2px 4px 0 rgb(255 255 255), 0 3px 14px 0 rgb(128 128 128);
+  color: rgb(239 219 219);
+}
+
+.elPadding {
+  padding-left: 2.9em;
 }
 
 
-  ngb-carousel img {
-    width: 100%;
-    outline: none;
-  }
+.tituloSombra {
+  color: #240f7d;
+  font-size: 3em;
+  font-weight: 900;
+  text-shadow: 6px 8px 10px #555;
+}
+
+.backCard {
+  background-color: #240f7d;
+  color: rgb(255 255 255);
+}
+
+
+
+ngb-carousel img {
+  width: 100%;
+  outline: none;
+}
 
 ngb-carousel {
   width: inherit;
@@ -62,7 +78,7 @@ container, .container-lg, .container-md, .container-sm, .container-xl {
 }
 
 .tangente {
-    max-width: 1400px;
+  max-width: 1400px;
 }
 
 body {
@@ -72,4 +88,3 @@ body {
 .sombras {
   box-shadow: 0 4px 8px 0 rgb(255 255 255), 0 6px 20px 0 rgb(128 128 128);
 }
-

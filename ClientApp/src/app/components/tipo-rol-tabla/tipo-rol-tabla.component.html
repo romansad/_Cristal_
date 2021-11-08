@@ -13,10 +13,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let rol of roles">
-      <td>{{rol.iidRol}}</td>
-      <td class="text-center">{{rol.nombreRol}}</td>
-      <td class="text-center">{{rol.bHabilitado}}</td>
-      <td class="text-center" *ngIf="isMantenimiento==true">
+      <td class="textoTabla">{{rol.iidRol}}</td>
+      <td class="text-center textoTabla">{{rol.nombreRol}}</td>
+      <td class="text-center textoTabla">{{rol.bHabilitado}}</td>
+      <td class="text-center " *ngIf="isMantenimiento==true">
         <button type="button" class="btn btn-outline-primary"[routerLink]="['/tipo-rol-form-generar',rol.iidRol]">  <img src="../../../assets/IconsGoogle/gear.svg" alt="" width="24" height="24" title="Modificar"></button>
         <button type="button" class="btn btn-outline-success" (click)="EliminarRol(rol.iidRol)"><img src="../../../assets/IconsGoogle/trash.svg" alt="" width="24" height="24" title="Borrar"></button>
              </td>

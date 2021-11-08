@@ -323,22 +323,22 @@ namespace MUNICIPALIDAD_V4.Controllers
             return oUrlMbx;
         }
         //   Boleta Pagada Recepcion de Pago. 
-         [HttpPost]
-        public async Task<ActionResult> Confirmacion(int id)
-        {
-            using (M_VPSA_V3Context bd = new M_VPSA_V3Context())
-            {
-                var idBoleta = id;
-            SqlParameter boletaid = new SqlParameter("@IdBoleta", idBoleta);
-           var llamar= bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLES_E_IMPUESTOS @IdBoleta", boletaid);
-               await bd.SaveChanges();
+        // [HttpPost]
+        //public async Task<ActionResult> Confirmacion(int id)
+        //{
+        //    using (M_VPSA_V3Context bd = new M_VPSA_V3Context())
+        //    {
+        //        var idBoleta = id;
+        //    SqlParameter boletaid = new SqlParameter("@IdBoleta", idBoleta);
+        //   var llamar= bd.Database.ExecuteSqlCommand("ACTUALIZACION_DETALLES_E_IMPUESTOS @IdBoleta", boletaid);
+        //       await bd.SaveChanges();
 
-                // await _context.SaveChangesAsync();
+        //        // await _context.SaveChangesAsync();
 
-                //return CreatedAtAction("GetBoletum", new { id = boletum.IdBoleta }, boletum);
-                return Ok();
-            }
-        }
+        //        //return CreatedAtAction("GetBoletum", new { id = boletum.IdBoleta }, boletum);
+        //        return Ok();
+        //    }
+        //}
 
         //A partir de aqui termina todo
     

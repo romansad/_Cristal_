@@ -14,14 +14,12 @@
   <tbody>
     <tr *ngFor="let pagina of Paginas | paginate: { itemsPerPage: 10, currentPage: p }">
       <td>{{pagina.idPagina}}</td>
-      <td class="text-center">{{pagina.mensaje}}</td>
-      <td class="text-center">{{pagina.accion}}</td>
+      <td class="text-center textoTabla">{{pagina.mensaje}}</td>
+      <td class="text-center textoTabla">{{pagina.accion}}</td>
       <td class="text-center" *ngIf="isMantenimiento==true">
-        <button type="button" class="btn btn-light" [routerLink]="['/pagina-form-generar',pagina.idPagina]"><img src="../../../assets/IconsGoogle/eyeglasses.svg" alt="" width="24" height="24" title="Editar Pagina"></button>
-        <button type="button" class="btn btn-outline-primary">  <img src="../../../assets/IconsGoogle/hand-index-thumb.svg" alt="" width="24" height="24" title="BorrarPagina"></button>
-        <button type="button" class="btn btn-outline-success"><img src="../../../assets/IconsGoogle/arrow-up-right-square.svg" alt="" width="24" height="24" title="Derivar Reclamo"></button>
+        <button type="button" class="btn btn-light" [routerLink]="['/pagina-form-generar',pagina.idPagina]"><img src="../../../assets/IconsGoogle/Edit.svg" alt="" width="24" height="24" title="Editar Pagina"></button>
 
-        <button type="button" class="btn btn-light"><img src="../../../assets/IconsGoogle/pause.svg" alt="" width="24" height="24" title="Suspender"></button>
+        <button type="button" class="btn btn-light"><img src="../../../assets/IconsGoogle/Delete.svg" alt="" width="24" height="24" title="Eliminar"></button>
       </td>
     </tr>
   </tbody>
