@@ -18,7 +18,7 @@ export class TrabajoFormGenerarComponent implements OnInit {
   foto: any;
   foto2: any;
   foto3: any;
-
+  notificacionMail: any;
   constructor(private TrabajoService: TrabajoService, private denunciaService: DenunciaService, private router: Router, private activatedRoute: ActivatedRoute) {
       this.activatedRoute.params.subscribe(parametro => {
         this.parametro = parametro["id"];
@@ -74,7 +74,7 @@ export class TrabajoFormGenerarComponent implements OnInit {
     // Foto 2
     var file2 = (<HTMLInputElement>document.getElementById("fupFoto2")).files[0];
     var fileReader2 = new FileReader();
-
+    
     fileReader2.onloadend = () => {   //Uso el Arrowfunction sino me marca error con foto.
 
       this.foto2 = fileReader2.result;
@@ -100,7 +100,13 @@ export class TrabajoFormGenerarComponent implements OnInit {
       this.Trabajo.controls["foto3"].setValue(this.foto3); //Seteo la foto antes de guardarla
       
       this.TrabajoService.GuardarTrabajo(this.Trabajo.value).subscribe(data => { });
+      if (this.notificacionMail == 1)
+      {
+        this.TrabajoService.notificar(this.Trabajo.value).subscribe(data => { });
+      }
       this.router.navigate(["/tabla-denuncia"]);
+
+      
 
     }
   }
@@ -125,5 +131,30 @@ export class TrabajoFormGenerarComponent implements OnInit {
       alert("Denuncia Finalizada");
       this.router.navigate(["/tabla-denuncia"]);
     }
-     }
+  }
+
+  verCheck() {
+    var seleccionados = "";
+    var noseleccionados = "";
+    var checks = document.getElementsByClassName("check");
+    var check;
+    //this.suma_actual = 0;
+    for (var i = 0; i < checks.length; i++) {
+      check = checks[i];
+      if (check.checked == true) {
+        this.notificacionMail = 1;
+        //  seleccionados += check.name; //Saco el id de la paginas sleeccionadas en el html hay una prop que se llama name=pagina.idPagina
+        // seleccionados += "-"; //separo los id de cada uno con un guion.
+        // this.suma_actual = this.suma_actual + parseInt(check.value);
+      }
+      else {
+        if (check.checked == false) {
+          // noseleccionados += check.name;
+          // noseleccionados += "-";
+        }
+      }
+    }
+
+  }
+
 }

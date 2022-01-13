@@ -80,8 +80,12 @@ export class FormUsuarioGenerarComponent implements OnInit {
     clickMethod() {
       alert("Se registró el usuario correctamente");
       //Luego de presionar click debe redireccionar al home
+
     }
-  
+
+  volver() {
+    this.router.navigate(["/tabla-usuario"]);
+  }
 
 
 

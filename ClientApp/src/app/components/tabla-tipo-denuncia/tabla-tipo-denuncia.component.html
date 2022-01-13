@@ -5,7 +5,7 @@
       <th class="text-center" *ngFor="let cabecera of cabeceras">{{cabecera}} </th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="textoTabla">
     <tr *ngFor="let TipoDenuncia of TiposDenuncia">
       <td>{{TipoDenuncia.cod_Tipo_Denuncia}}</td>
       <td class="text-center">{{TipoDenuncia.nombre}}</td>

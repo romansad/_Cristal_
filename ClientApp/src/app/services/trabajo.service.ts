@@ -22,10 +22,18 @@ export class TrabajoService {
     return this.http.post(url, Trabajo).map(res => res.json());
    }
 
+  public notificar(Trabajo) {
+    var url = this.urlBase + 'api/Trabajo/notificar/';
+    return this.http.post(url, Trabajo).map(res => res.json());
+  }
+
+
   public GuardarTrabajoReclamo(Trabajo) {
     var url = this.urlBase + 'api/Trabajo/GuardarTrabajoReclamo/';
     return this.http.post(url, Trabajo).map(res => res.json());
   }
+
+
 
 
   
