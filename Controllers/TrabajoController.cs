@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MUNICIPALIDAD_V4.clases;
 using MUNICIPALIDAD_V4.models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Transactions;
 
@@ -127,6 +129,42 @@ namespace MUNICIPALIDAD_V4.Controllers
             }
             return rpta;
         }
+        //----------------------------------------------------------------
+        [HttpPost]
+        [Route("api/Trabajo/notificar")]
+        public int notificar([FromBody] TrabajoCLS oTrabajoCLS)
+        {
+            int rpta = 0;
+            try
+            {
+                using (M_VPSA_V3Context bd = new M_VPSA_V3Context())
+                {
+                    
+                    //SqlParameter idDenuncia = new SqlParameter("@IdDenuncia", oTrabajoCLS.Nro_Denuncia);
+                    bd.Database.ExecuteSqlCommand("PRUEBADEMAIL");
+                     bd.SaveChanges();
+                }
+                rpta = 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                rpta = 0;
+            }
+            // oTrabajo.NroDenuncia = oTrabajoCLS.Nro_Denuncia;
+            //     oTrabajo.Bhabilitado = 1;
+
+            return rpta;
+        }
+
+
+
+
+
+        //--------------------------------------------------------------
+
+
+
         [HttpPost]
         [Route("api/Trabajo/GuardarTrabajoReclamo")]
         public int GuardarTrabajoReclamo([FromBody] TrabajoCLS oTrabajoCLS)

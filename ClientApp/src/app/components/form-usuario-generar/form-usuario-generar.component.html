@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cargade Trabajo</title>
+  <title>Empleado Municipal -Editar</title>
   <style>
     .bd-placeholder-img {
       font-size: 1.125rem;
@@ -21,14 +21,14 @@
   </style>
 
 </head>
-<body class="bg-light">
+<body>
   <!-- <form [formGroup]="Denuncia" (ngSubmit)="guardarDatos()" class=" needs-validation" novalidate>-->
   <form [formGroup]="Usuario" (ngSubmit)="guardarDatos()">
 
     <div class="container">
       <div class="d-flex align-items-center p-2 my-2 bg-purple bg-light shadow p-2 mb-5 rounded shadow-sm">
         <img src="../../../assets/Imagenes/Worker.svg" alt="" width="88" height="88">
-        <div class="tituloFormulario text-center form-group col-md-8 offset-md-1">
+        <div class="tituloSombra text-center form-group col-md-8 offset-md-1">
           <p> {{titulo}} Empleado Municipal.</p>
         </div>
       </div>
@@ -137,7 +137,7 @@
           <hr class="mb-4">
           <div class="form-group col-md-12 mb-3 pt-3">
             <input [disabled]="!Usuario.valid" type="submit" value="Generar" class="btn btn-success col-md-4 offset-md-1 " (click)="clickMethod()" />
-            <button type="button" class="btn btn-secondary col-md-4 offset-md-1 ">Cancelar</button>
+            <button type="button" class="btn btn-secondary col-md-4 offset-md-1 " (click)="volver()">Cancelar</button>
           </div>
 
         </div>

@@ -59,7 +59,16 @@ import { ImpuestosVecinoAdeudaTablaComponent } from './components/impuestos-veci
 import { MapasCordobaComponent } from './components/mapas-cordoba/mapas-cordoba.component';
 import { ImpuestoPagoSendComponent } from './components/impuesto-pago-send/impuesto-pago-send.component';
 import { TaskService } from './services/task.service';
-import { SugerenciaFormGenerarComponent } from './components/sugerencia-form-generar/sugerencia-form-generar.component';
+import { SugerenciaService} from './services/sugerencia.service';
+import { SugerenciaTablaComponent } from './components/sugerencia-tabla/sugerencia-tabla.component';
+import { DashDatosAbiertosComponent } from './components/dash-datos-abiertos/dash-datos-abiertos.component';
+import { DatosFinanzasEconomicosComponent } from './components/datos-finanzas-economicos/datos-finanzas-economicos.component';
+import { DatosTerritorioUrbanismoComponent } from './components/datos-territorio-urbanismo/datos-territorio-urbanismo.component';
+import { DatosMedioambienteComponent } from './components/datos-medioambiente/datos-medioambiente.component';
+import { DatosSolicitudesComponent } from './components/datos-solicitudes/datos-solicitudes.component';
+import { DatosSugerenciasComponent } from './components/datos-sugerencias/datos-sugerencias.component';
+import { DatosFinanEconomGenerarComponent } from './components/datos-finan-econom-generar/datos-finan-econom-generar.component';
+import { DatasetFinanzasService } from './services/dataset-finanzas.service';
 
 
 @NgModule({
@@ -102,6 +111,14 @@ import { SugerenciaFormGenerarComponent } from './components/sugerencia-form-gen
     MapasCordobaComponent,
     ImpuestoPagoSendComponent,
     SugerenciaFormGenerarComponent,
+    SugerenciaTablaComponent,
+    DashDatosAbiertosComponent,
+    DatosFinanzasEconomicosComponent,
+    DatosTerritorioUrbanismoComponent,
+    DatosMedioambienteComponent,
+    DatosSolicitudesComponent,
+    DatosSugerenciasComponent,
+    DatosFinanEconomGenerarComponent,
 
      ],
   imports: [
@@ -157,15 +174,22 @@ import { SugerenciaFormGenerarComponent } from './components/sugerencia-form-gen
         { path: 'mapas-cordoba', component: MapasCordobaComponent },
         { path: 'impuesto-pago-send', component: ImpuestoPagoSendComponent },
         { path: 'sugerencia-form-generar', component: SugerenciaFormGenerarComponent },
-
-
+        { path: 'sugerencia-tabla', component: SugerenciaTablaComponent, canActivate: [SeguridadGuard] },
+        { path: 'dash-datos-abiertos', component: DashDatosAbiertosComponent },
+        { path: 'datos-finanzas-economicos', component: DatosFinanzasEconomicosComponent },
+        { path: 'datos-territorio-urbanismo', component: DatosTerritorioUrbanismoComponent },
+        { path: 'datos-medioambiente', component: DatosMedioambienteComponent },
+        { path: 'datos-solicitudes', component: DatosSolicitudesComponent },
+        { path: 'datos-sugerencias', component: DatosSugerenciasComponent },
+        { path: 'datos-finan-econom-generar', component: DatosFinanEconomGenerarComponent },
+        
     
         { path: '**', redirectTo: '' } //regña de derivacion a ruteo especifico
 
 
       ])
   ],
-  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService],
+  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService, SugerenciaService, DatasetFinanzasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

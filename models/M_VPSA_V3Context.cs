@@ -17,6 +17,7 @@ namespace MUNICIPALIDAD_V4.models
 
         public virtual DbSet<Boleta> Boleta { get; set; }
         public virtual DbSet<ControlProcesos> ControlProcesos { get; set; }
+        public virtual DbSet<DatosAbiertos> DatosAbiertos { get; set; }
         public virtual DbSet<Denuncia> Denuncia { get; set; }
         public virtual DbSet<Detalleboleta> Detalleboleta { get; set; }
         public virtual DbSet<EstadoDenuncia> EstadoDenuncia { get; set; }
@@ -37,6 +38,8 @@ namespace MUNICIPALIDAD_V4.models
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Sesiones> Sesiones { get; set; }
         public virtual DbSet<Solicitud> Solicitud { get; set; }
+        public virtual DbSet<Sugerencia> Sugerencia { get; set; }
+        public virtual DbSet<TipoDatoAbierto> TipoDatoAbierto { get; set; }
         public virtual DbSet<TipoDenuncia> TipoDenuncia { get; set; }
         public virtual DbSet<Tipopago> Tipopago { get; set; }
         public virtual DbSet<TipoReclamo> TipoReclamo { get; set; }
@@ -51,7 +54,7 @@ namespace MUNICIPALIDAD_V4.models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-THJSEM4;Initial Catalog=M_VPSA_V3;Integrated Security=True");
             }
         }
@@ -103,6 +106,34 @@ namespace MUNICIPALIDAD_V4.models
                     .WithMany(p => p.ControlProcesos)
                     .HasForeignKey(d => d.IdProceso)
                     .HasConstraintName("FK__CONTROL_P__IdPro__1975C517");
+            });
+
+            modelBuilder.Entity<DatosAbiertos>(entity =>
+            {
+                entity.HasKey(e => e.IdArchivo);
+
+                entity.ToTable("DATOS_ABIERTOS");
+
+                entity.Property(e => e.IdArchivo).HasColumnName("idArchivo");
+
+                entity.Property(e => e.Bhabilitado)
+                    .HasColumnName("BHabilitado")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Extension)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NombreArchivo)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ubicacion).HasColumnType("text");
+
+                entity.HasOne(d => d.IdTipoDatoNavigation)
+                    .WithMany(p => p.DatosAbiertos)
+                    .HasForeignKey(d => d.IdTipoDato)
+                    .HasConstraintName("FK_TipoDatoAbierto");
             });
 
             modelBuilder.Entity<Denuncia>(entity =>
@@ -368,7 +399,7 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Paginaxrol)
                     .HasForeignKey(d => d.IdRol)
-                    .HasConstraintName("FK__PAGINAXRO__idRol__68487DD7");
+                    .HasConstraintName("FK__PAGINAXRO__idRol__0880433F");
             });
 
             modelBuilder.Entity<Pago>(entity =>
@@ -523,7 +554,7 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.PruebaGraficaDenuncia)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__PRUEBA_GR__IdUsu__693CA210");
+                    .HasConstraintName("FK__PRUEBA_GR__IdUsu__09746778");
 
                 entity.HasOne(d => d.NroDenunciaNavigation)
                     .WithMany(p => p.PruebaGraficaDenuncia)
@@ -552,12 +583,12 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.PruebaGraficaReclamo)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__PRUEBA_GR__IdUsu__6B24EA82");
+                    .HasConstraintName("FK__PRUEBA_GR__IdUsu__0B5CAFEA");
 
                 entity.HasOne(d => d.IdVecinoNavigation)
                     .WithMany(p => p.PruebaGraficaReclamo)
                     .HasForeignKey(d => d.IdVecino)
-                    .HasConstraintName("FK__PRUEBA_GR__IdVec__6C190EBB");
+                    .HasConstraintName("FK__PRUEBA_GR__IdVec__0C50D423");
 
                 entity.HasOne(d => d.NroReclamoNavigation)
                     .WithMany(p => p.PruebaGraficaReclamo)
@@ -615,7 +646,7 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Reclamo)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__RECLAMO__IdUsuar__6FE99F9F");
+                    .HasConstraintName("FK__RECLAMO__IdUsuar__10216507");
 
                 entity.HasOne(d => d.IdVecinoNavigation)
                     .WithMany(p => p.Reclamo)
@@ -709,6 +740,42 @@ namespace MUNICIPALIDAD_V4.models
                     .HasForeignKey(d => d.IdVecino)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__SOLICITUD__IdVec__4589517F");
+            });
+
+            modelBuilder.Entity<Sugerencia>(entity =>
+            {
+                entity.HasKey(e => e.IdSugerencia);
+
+                entity.ToTable("SUGERENCIA");
+
+                entity.Property(e => e.IdSugerencia).HasColumnName("idSugerencia");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(1500)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FechaGenerada)
+                    .HasColumnType("date")
+                    .HasDefaultValueSql("(getdate())");
+            });
+
+            modelBuilder.Entity<TipoDatoAbierto>(entity =>
+            {
+                entity.HasKey(e => e.IdTipoDato);
+
+                entity.ToTable("TIPO_DATO_ABIERTO");
+
+                entity.Property(e => e.IdTipoDato).HasColumnName("idTipoDato");
+
+                entity.Property(e => e.Bhabilitado).HasColumnName("BHabilitado");
+
+                entity.Property(e => e.Descripcion)
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Nombre)
+                    .HasMaxLength(90)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TipoDenuncia>(entity =>
@@ -810,7 +877,7 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Trabajo)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__TRABAJO__IdUsuar__72C60C4A");
+                    .HasConstraintName("FK__TRABAJO__IdUsuar__12FDD1B2");
 
                 entity.HasOne(d => d.NroDenunciaNavigation)
                     .WithMany(p => p.Trabajo)
@@ -841,12 +908,12 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.TrabajoReclamo)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__TRABAJO_R__IdUsu__74AE54BC");
+                    .HasConstraintName("FK__TRABAJO_R__IdUsu__14E61A24");
 
                 entity.HasOne(d => d.IdVecinoNavigation)
                     .WithMany(p => p.TrabajoReclamo)
                     .HasForeignKey(d => d.IdVecino)
-                    .HasConstraintName("FK__TRABAJO_R__IdVec__75A278F5");
+                    .HasConstraintName("FK__TRABAJO_R__IdVec__15DA3E5D");
 
                 entity.HasOne(d => d.NroReclamoNavigation)
                     .WithMany(p => p.TrabajoReclamo)
@@ -927,7 +994,7 @@ namespace MUNICIPALIDAD_V4.models
                 entity.HasOne(d => d.IdTipoUsuarioNavigation)
                     .WithMany(p => p.Usuario)
                     .HasForeignKey(d => d.IdTipoUsuario)
-                    .HasConstraintName("FK__USUARIO__idTipoU__787EE5A0");
+                    .HasConstraintName("FK__USUARIO__idTipoU__18B6AB08");
             });
 
             modelBuilder.Entity<UsuarioVecino>(entity =>

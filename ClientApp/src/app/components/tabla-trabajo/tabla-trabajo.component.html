@@ -20,7 +20,7 @@
       <td class="text-center">{{(trabajo.descripcion.length>6)? (trabajo.descripcion | slice:0:70)+' ':(trabajo.descripcion)}}<strong>...</strong></td>
       <td class="text-center">{{trabajo.id_Usuario}}</td>
       <td class="text-center" *ngIf="isMantenimiento==true">
-        <button type="button" class="btn btn-outline-secondary" [routerLink]="['/trabajo-form-generar',trabajo.nro_Denuncia]">
+        <button type="button" class="btn btn-light" [routerLink]="['/trabajo-form-generar',trabajo.nro_Denuncia]">
           <img src="../../../assets/IconsGoogle/gear.svg" alt="" width="24" height="24" title="Cargar Trabajo">
         </button>
         <button type="button" class="btn btn-light" [routerLink]="['/trabajo-detalle-denuncia',trabajo.nro_Trabajo]"><img src="../../../assets/icons/eye.svg" alt="" width="24" height="24" title="Ver Detalles"></button>
