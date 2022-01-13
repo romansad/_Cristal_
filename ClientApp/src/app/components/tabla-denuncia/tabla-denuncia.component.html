@@ -10,8 +10,8 @@
     <div class="input-group-append">
       <button class="btn btn-success" type="submit">Buscar</button>
 
-      <select id="Tipo_Denuncia" formControlName="tipoDenuncia" class="offset-md-1">
-        <option selected value="">Filtrar Tipo de Denuncia </option> 
+      <select id="Tipo_Denuncia" formControlName="tipoDenuncia" class="offset-md-1 combobox">
+        <option class="combobox" selected value="">Filtrar por.. </option> 
         <option [ngValue]="TipoDenuncia.cod_Tipo_Denuncia"
          *ngFor="let TipoDenuncia of TiposDenuncia">{{TipoDenuncia.nombre}}</option>
       </select>

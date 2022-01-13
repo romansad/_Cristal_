@@ -67,6 +67,8 @@ import { DatosTerritorioUrbanismoComponent } from './components/datos-territorio
 import { DatosMedioambienteComponent } from './components/datos-medioambiente/datos-medioambiente.component';
 import { DatosSolicitudesComponent } from './components/datos-solicitudes/datos-solicitudes.component';
 import { DatosSugerenciasComponent } from './components/datos-sugerencias/datos-sugerencias.component';
+import { DatosFinanEconomGenerarComponent } from './components/datos-finan-econom-generar/datos-finan-econom-generar.component';
+import { DatasetFinanzasService } from './services/dataset-finanzas.service';
 
 
 @NgModule({
@@ -116,6 +118,7 @@ import { DatosSugerenciasComponent } from './components/datos-sugerencias/datos-
     DatosMedioambienteComponent,
     DatosSolicitudesComponent,
     DatosSugerenciasComponent,
+    DatosFinanEconomGenerarComponent,
 
      ],
   imports: [
@@ -178,7 +181,7 @@ import { DatosSugerenciasComponent } from './components/datos-sugerencias/datos-
         { path: 'datos-medioambiente', component: DatosMedioambienteComponent },
         { path: 'datos-solicitudes', component: DatosSolicitudesComponent },
         { path: 'datos-sugerencias', component: DatosSugerenciasComponent },
-
+        { path: 'datos-finan-econom-generar', component: DatosFinanEconomGenerarComponent },
         
     
         { path: '**', redirectTo: '' } //regña de derivacion a ruteo especifico
@@ -186,7 +189,7 @@ import { DatosSugerenciasComponent } from './components/datos-sugerencias/datos-
 
       ])
   ],
-  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService, SugerenciaService],
+  providers: [UsuarioService, DenunciaService, TrabajoService, ReclamoService, SeguridadGuard, VecinoService, SeguridadVecinoGuard, PruebaGraficaService, IndicadoresService, ImpuestoService, SugerenciaService, DatasetFinanzasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

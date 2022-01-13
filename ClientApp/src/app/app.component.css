@@ -8,9 +8,10 @@
 }
 
 .tituloFormulario, .subtitulo {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 3.5em;
   color: #240f7d;
+  font-size: 3em;
+  font-weight: 900;
+  text-shadow: 6px 8px 10px #555;
 }
 
 label {
